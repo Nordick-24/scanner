@@ -3,7 +3,7 @@
 sudo apt-get install arp-scan nmap -Y
 sudo arp-scan -l
 
-echo 'Enter ip address for port scan:'
+echo 'Please enter ip address for port scan:'
 read ip
 
 nmap $ip
