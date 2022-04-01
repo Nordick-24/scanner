@@ -1,9 +1,40 @@
 #!/bin/bash
 
-sudo apt-get install arp-scan nmap -Y
-sudo arp-scan -l
+echo '==============================================================================='
+echo ' mmmmm                  m     mmmm                                           
+ #   "#  mmm    m mm  mm#mm  #"   "  mmm    mmm   m mm   m mm    mmm    m mm 
+ #mmm#" #" "#   #"  "   #    "#mmm  #"  "  "   #  #"  #  #"  #  #"  #   #"  "
+ #      #   #   #       #        "# #      m"""#  #   #  #   #  #""""   #    
+ #      "#m#"   #       "mm  "mmm#" "#mm"  "mm"#  #   #  #   #  "#mm"   #   '
+echo '==============================================================================='
+echo '                   created by P.polushkin and Y.Polushkin '
+echo ''
 
-echo 'Please enter ip address for port scan:'
-read ip
+echo 'Do you want scan ip-adress or site?'
+read target
 
-nmap $ip
+if [ "$target" = "ip" ]; then
+  sudo arp-scan -l
+  echo 'Please enter ip address for port scan:'
+
+  read scanner
+  nmap $scanner -oG res
+
+  cat res | grep open > result
+  cat result
+else
+  echo 'Please enter site - example google.com:'
+  read s
+  nmap $s -oG res
+
+  cat res | grep open > result1
+  cat result1
+fi
+
+echo 'Do you want to run metasploit for hacking-{yes/no}'
+read metasploit
+if [ "$metasploit" = "yes" ]; then
+  sudo msfconsole
+else
+  echo 'Thank you for using - good bay:)'
+fi
